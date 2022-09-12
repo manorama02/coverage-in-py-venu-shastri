@@ -13,7 +13,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
     'HI_ACTIVE_COOLING':[0,45],
     'MED_ACTIVE_COOLING':[0,40]
   }
-  #used dictionary instead of if else ladder
+  #used dictionary instead of if else ladder=> increased coverage from 41 to 52%
   lowerLimit,upperLimit = limits_as_per_cooling[coolingType]
   
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
