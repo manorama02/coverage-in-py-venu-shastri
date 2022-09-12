@@ -11,6 +11,5 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.infer_breach(80, 50, 100) == 'NORMAL')
  
 
-
 if __name__ == '__main__':
   unittest.main()
