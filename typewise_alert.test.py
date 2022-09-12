@@ -40,35 +40,26 @@ class TypewiseTest(unittest.TestCase):
     
   def test_classify_temperature_med_active_cooling_normal(self):
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 39 )== 'NORMAL')
-    
-   #above tests increased coverage from 65 to 68%
-  
-  #mocking print 
-  
-  @patch('builtins.print')
-	def test_send_to_controller_too_low(self, mock_print):
-		typewise_alert.send_to_controller('TOO_LOW')
-		mock_print.assert_called_with(f'{0xfeed}, TOO_LOW')
-    
-  @patch('builtins.print')
-	def test_send_to_controller_too_low(self, mock_print):
-		typewise_alert.send_to_controller('TOO_HIGH')
-		mock_print.assert_called_with(f'{0xfeed}, TOO_HIGH')
+    #above tests increased coverage from 65 to 68%
+@patch('builtins.print')
+def test_send_to_controller_too_low(self, mock_print):
+	typewise_alert.send_to_controller('TOO_LOW')
+	mock_print.assert_called_with(f'{0xfeed}, TOO_LOW')
+@patch('builtins.print')
+def test_send_to_controller_too_low(self, mock_print):
+	typewise_alert.send_to_controller('TOO_HIGH')
+	mock_print.assert_called_with(f'{0xfeed}, TOO_HIGH')
+@patch('builtins.print')
+def test_send_to_email_too_low(self, mock_print):
+	typewise_alert.send_to_email('TOO_LOW')
+	assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too low')]
+@patch('builtins.print')
+def test_send_to_email_too_high(self, mock_print):
+	typewise_alert.send_to_email('TOO_HIGH')
+	assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too high')]
 
-	@patch('builtins.print')
-	def test_send_to_email_too_low(self, mock_print):
-		typewise_alert.send_to_email('TOO_LOW')
-		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too low')]
-
-	@patch('builtins.print')
-	def test_send_to_email_too_high(self, mock_print):
-		typewise_alert.send_to_email('TOO_HIGH')
-		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too high')]
-  
     
-    
-   
- 
+     
 
 if __name__ == '__main__':
   unittest.main()
