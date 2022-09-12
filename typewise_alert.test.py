@@ -19,7 +19,7 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', 36)== 'TOO_HIGH')#increased coverage from 59 to 60%
     
   def test_classify_temperature_passive_cooling_normal(self):
-    self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', 30 )= 'NORMAL')
+    self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', 30 )== 'NORMAL')
   
   def test_classify_temperature_hi_active_cooling_too_low(self):
      self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', -2)== 'TOO_LOW')
