@@ -11,8 +11,8 @@ def is_valid(cc_number):
 	if invalid:
 		return False
 	numbers_list = get_number_list(cc_number)
-	odd_digits = digits[-1::-2]
-	even_digits = digits[-2::-2]
+	odd_digits = numbers_list[-1::-2]
+	even_digits = numbers_list[-2::-2]
 	checksum=0
 	for d in even_digits:
 		checksum+=sum(get_number_list(d*2))
