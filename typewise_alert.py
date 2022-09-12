@@ -12,8 +12,10 @@ def classify_temperature_breach(coolingType, temperatureInC):
     'PASSIVE_COOLING':[0,35],
     'HI_ACTIVE_COOLING':[0,45],
     'MED_ACTIVE_COOLING':[0,40]
-  }#used dictionary instead of if else ladder
+  }
+  #used dictionary instead of if else ladder
   lowerLimit,upperLimit = limits_as_per_cooling[coolingType]
+  
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
 
 
