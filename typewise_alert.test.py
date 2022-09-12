@@ -28,9 +28,7 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 50)== 'TOO_HIGH')
     
   def test_classify_temperature_hi_active_cooling_normal(self):
-    self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 40 )== 'NORMAL')
-  
-  #above tests increased coverage from 60 to 65%
+    self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 40 )== 'NORMAL')#above tests increased coverage from 60 to 65%
   
   def test_classify_temperature_med_active_cooling_too_low(self):
      self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', -2)== 'TOO_LOW')
@@ -41,31 +39,29 @@ class TypewiseTest(unittest.TestCase):
   def test_classify_temperature_med_active_cooling_normal(self):
     self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 39 )== 'NORMAL')
     #above tests increased coverage from 65 to 68%
-@patch('builtins.print')
-def test_send_to_controller_too_low(self, mock_print):
+  @patch('builtins.print')
+  def test_send_to_controller_too_low(self, mock_print):
 	typewise_alert.send_to_controller('TOO_LOW')
 	mock_print.assert_called_with(f'{0xfeed}, TOO_LOW')
-@patch('builtins.print')
-def test_send_to_controller_too_low(self, mock_print):
+  @patch('builtins.print')
+  def test_send_to_controller_too_low(self, mock_print):
 	typewise_alert.send_to_controller('TOO_HIGH')
 	mock_print.assert_called_with(f'{0xfeed}, TOO_HIGH')
-@patch('builtins.print')
-def test_send_to_email_too_low(self, mock_print):
+  @patch('builtins.print')
+  def test_send_to_email_too_low(self, mock_print):
 	typewise_alert.send_to_email('TOO_LOW')
 	assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too low')]
-@patch('builtins.print')
-def test_send_to_email_too_high(self, mock_print):
+  @patch('builtins.print')
+  def test_send_to_email_too_high(self, mock_print):
 	typewise_alert.send_to_email('TOO_HIGH')
 	assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too high')]
-	
-@patch('typewise_alert.send_to_controller')
-def test_check_and_alert_controller(self, mock):
+  @patch('typewise_alert.send_to_controller')
+  def test_check_and_alert_controller(self, mock):
 	batteryChar = { 'coolingType': 'MED_ACTIVE_COOLING' }
 	typewise_alert.check_and_alert('TO_CONTROLLER', batteryChar, 100)
 	self.assertTrue(mock.called)
-
-@patch('typewise_alert.send_to_email')
-def test_check_and_alert_email(self, mock):
+  @patch('typewise_alert.send_to_email')
+  def test_check_and_alert_email(self, mock):
 	batteryChar = { 'coolingType': 'HI_ACTIVE_COOLING'}
 	typewise_alert.check_and_alert('TO_EMAIL', batteryChar, 30)
 	self.assertTrue(mock.called)
