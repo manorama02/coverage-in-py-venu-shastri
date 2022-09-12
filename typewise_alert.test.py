@@ -1,6 +1,6 @@
 import unittest
 import typewise_alert
-from unittest.mock import patch
+from unittest.mock import patch, call
 
 class TypewiseTest(unittest.TestCase):
   def test_infers_breach_as_per_limits(self):
