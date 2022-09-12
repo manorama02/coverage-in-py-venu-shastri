@@ -54,6 +54,7 @@ class TypewiseTest(unittest.TestCase):
 		batteryChar = { 'coolingType': 'HI_ACTIVE_COOLING'}
 		typewise_alert.check_and_alert('TO_EMAIL', batteryChar, 30)
 		self.assertTrue(mock.called)
+	#overall coverage is 97%
 
     
  
