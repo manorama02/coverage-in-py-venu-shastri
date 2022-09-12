@@ -33,15 +33,15 @@ class TypewiseTest(unittest.TestCase):
 		typewise_alert.send_to_controller('TOO_LOW')
 		mock_print.assert_called_with(f'{0xfeed}, TOO_LOW')
 
-# 	@patch('builtins.print')
-# 	def test_send_to_email_too_low(self, mock_print):
-# 		typewise_alert.send_to_email('TOO_LOW')
-# 		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too low')]
+	@patch('builtins.print')
+	def test_send_to_email_too_low(self, mock_print):
+		typewise_alert.send_to_email('TOO_LOW')
+		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hi, the temperature is too low')]
 
-# 	@patch('builtins.print')
-# 	def test_send_to_email_too_high(self, mock_print):
-# 		typewise_alert.send_to_email('TOO_HIGH')
-# 		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too high')]
+	@patch('builtins.print')
+	def test_send_to_email_too_high(self, mock_print):
+		typewise_alert.send_to_email('TOO_HIGH')
+		assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hi, the temperature is too high')]
 
 	@patch('typewise_alert.send_to_controller')
 	def test_check_and_alert_controller(self, mock):
