@@ -7,7 +7,7 @@ def invalid_length(cc_number):
   return len(cc_number) != 16
 
 def is_valid(cc_number):	
-  invalid=checkempty(cc_number) || invalid_length(cc_number)
+  invalid=checkempty(cc_number) | invalid_length(cc_number)
   if invalid:
     return False
 	numbers_list = get_number_list(cc_number)
