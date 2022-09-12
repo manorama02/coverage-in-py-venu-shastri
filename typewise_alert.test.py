@@ -57,6 +57,18 @@ def test_send_to_email_too_low(self, mock_print):
 def test_send_to_email_too_high(self, mock_print):
 	typewise_alert.send_to_email('TOO_HIGH')
 	assert mock_print.mock_calls == [call('To: a.b@c.com'), call('Hello, the temperature is too high')]
+	
+@patch('typewise_alert.send_to_controller')
+def test_check_and_alert_controller(self, mock):
+	batteryChar = { 'coolingType': 'MED_ACTIVE_COOLING' }
+	typewise_alert.check_and_alert('TO_CONTROLLER', batteryChar, 100)
+	self.assertTrue(mock.called)
+
+@patch('typewise_alert.send_to_email')
+def test_check_and_alert_email(self, mock):
+	batteryChar = { 'coolingType': 'HI_ACTIVE_COOLING'}
+	typewise_alert.check_and_alert('TO_EMAIL', batteryChar, 30)
+	self.assertTrue(mock.called)
 
     
      
