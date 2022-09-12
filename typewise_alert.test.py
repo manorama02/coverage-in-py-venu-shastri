@@ -7,8 +7,9 @@ class TypewiseTest(unittest.TestCase):
     self.assertTrue(typewise_alert.infer_breach(20, 50, 100) == 'TOO_LOW')
   def test_infer_breach_for_too_high(self):
     self.assertTrue(typewise_alert.infer_breach(200, 50, 100) == 'TOO_HIGH')
-  def bluff_test(self):
-    typewise_alert.check_and_alert('TO_CONTROLLER','PASSIVE_COOLING', 20)
+  def test_infer_breach_for_normal(self):
+    self.assertTrue(typewise_alert.infer_breach(80, 50, 100) == 'NORMAL')
+ 
 
 
 if __name__ == '__main__':
